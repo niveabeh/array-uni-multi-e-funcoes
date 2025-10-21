@@ -1,133 +1,136 @@
-<?php
-session_start();
-
-// Inicializa array de nomes na sessão, se ainda não existir
-if (!isset($_SESSION['nomes'])) {
-    $_SESSION['nomes'] = [];
-}
-
-// Recebendo os dados
-$valor_nome = $_POST['nome'] ?? '';
-
-//Recebendo a ação
-$acao = $_POST['acao'] ?? '';
-
-$valor_acao = validar($acao);
-$valor_nome = validar($valor_nome);
-
-// Referência ao array de nomes da sessão
-//O & é uma referência
-//Estou referenciando o array de nomes da sessão
-//ambos os arrays apontam para o mesmo lugar
-$nomes = &$_SESSION['nomes'];
-
-//Função para validar os dados
-function validar($valor)
-{
-    //se tiver espaços em branco, tirar os espaços em branco
-    $valor = trim($valor);
-    //tirar os caracteres especiais
-    $valor = htmlspecialchars($valor);
-    return $valor;
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Resultado</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <title>Manipulação de Arrays em PHP</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <div class="container-resp">
-        <h1>Resultado da Ação: <?php echo $valor_acao; ?></h1>
-        <div class="container-mensagem">
-            <?php
+    <div class="container">
+        <h1>Manipulação de Arrays em PHP</h1>
 
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        <?php
 
-                switch ($valor_acao) {
-                    // Caso a ação seja armazenar
-                    case 'armazenar':
-                        // Verifica se o nome foi digitado
-                        if (!empty($valor_nome)) {
-                            // Armazena o nome no array
-                            $nomes[] = $valor_nome;
-                            // Exibe uma mensagem
-                            echo "Nome <strong>$valor_nome</strong> foi armazenado com sucesso!";
-                        } else {
-                            echo "Nenhum nome informado.";
-                        }
-                        break;
-                                    
-                    case 'buscar':
-                        if (in_array($valor_nome, $nomes)) {
-                            // Busca o nome no array
-                            $posicao = array_search($valor_nome, $nomes);
-                            echo "O nome <strong>$valor_nome</strong> está na posição <strong>$posicao</strong> do array.";
-                        } else {
-                            echo "O nome <strong>$valor_nome</strong> não foi encontrado.";
-                        }
-                        break;
+        $nomes = ["Maria", "João", "Ana", "Carlos", "Beatriz"];
 
-                    case 'ordenar':
-                        // Ordena o array
-                        sort($nomes);
-                        echo "<h3>Nomes Ordenados:</h3><ul>";
-                        // Exibe o array
-                        foreach ($nomes as $nome) {
-                            echo "<li>$nome</li>";
-                        }
-                        echo "</ul>";
-                        break;
-
-                    case 'inverter':
-
-                        // Inverte o array
-                        $invertido = array_reverse($nomes);
-                        echo "<h3>Nomes na Ordem Invertida:</h3><ul>";
-                        foreach ($invertido as $nome) {
-                            echo "<li>$nome</li>";
-                        }
-                        echo "</ul>";
-                        break;
-
-                    case 'contar':
-                        // Conta o array
-                        echo "Há <strong>" . count($nomes) . "</strong> nomes armazenados.";
-                        break;
-
-                    case 'mostrar':
-                        echo "<h3>Todos os Nomes Armazenados:</h3><ul>";
-                        //Exibe o conteudo do array
-                        foreach ($nomes as $nome) {
-                            echo "<li>$nome</li>";
-                        }
-                        echo "</ul>";
-                        break;
-
-                    case 'limpar':
-                        // Limpa o array
-                        session_destroy();
-                        echo "A lista de nomes foi <strong>limpa</strong> com sucesso.";
-                        break;
-
-                    default:
-                        echo "Ação inválida.";
-                        break;
-                }
+        // Função auxiliar para exibir array com índices
+        function mostrarArray($array) {
+            $html = '';
+            foreach ($array as $indice => $valor) {
+                $html .= "<div class='linha'>Índice <strong>$indice</strong>: $valor</div>";
             }
-            ?>
-        </div>
-        <br><br>
-        <a class="voltar" href="index.html">Voltar</a>
+            return $html;
+        }
+
+        echo "<div class='exemplo'><h2>Array original:</h2>";
+        echo mostrarArray($nomes);
+        echo "</div>";
+
+        // 1. Adicionar um nome no final (array_push)
+        array_push($nomes, "Pedro");
+        echo "<div class='exemplo'><h2>Após array_push('Pedro'):</h2>";
+        echo mostrarArray($nomes);
+        echo "</div>";
+
+        // 2. Adicionar um nome no começo (array_unshift)
+        array_unshift($nomes, "Lucas");
+        echo "<div class='exemplo'><h2>Após array_unshift('Lucas'):</h2>";
+        echo mostrarArray($nomes);
+        echo "</div>";
+
+        // 3. Remover o último nome (array_pop)
+        $ultimo = array_pop($nomes);
+        echo "<div class='exemplo'><h2>Após array_pop(), removido: <strong>$ultimo</strong></h2>";
+        echo mostrarArray($nomes);
+        echo "</div>";
+
+        // 4. Remover o primeiro nome (array_shift)
+        $primeiro = array_shift($nomes);
+        echo "<div class='exemplo'><h2>Após array_shift(), removido: <strong>$primeiro</strong></h2>";
+        echo mostrarArray($nomes);
+        echo "</div>";
+
+        // 5. Ordenar a array em ordem alfabética (sort)
+        sort($nomes);
+        echo "<div class='exemplo'><h2>Após sort():</h2>";
+        echo mostrarArray($nomes);
+        echo "</div>";
+
+        // 6. Ordenar a array em ordem reversa (rsort)
+        rsort($nomes);
+        echo "<div class='exemplo'><h2>Após rsort():</h2>";
+        echo mostrarArray($nomes);
+        echo "</div>";
+
+        // 7. Contar elementos (count)
+        $quantidade = count($nomes);
+        echo "<div class='exemplo'><h2>Quantidade de nomes:</h2>";
+        echo "<div class='linha'><strong>$quantidade</strong></div>";
+        echo "</div>";
+
+        // 8. Procurar índice de um nome (array_search)
+        $busca = "Ana";
+        $indice = array_search($busca, $nomes);
+        echo "<div class='exemplo'><h2>Buscar índice do nome '$busca':</h2>";
+        if ($indice !== false) {
+            echo "<div class='linha'>O nome <strong>'$busca'</strong> está no índice: <strong>$indice</strong></div>";
+        } else {
+            echo "<div class='linha'>O nome <strong>'$busca'</strong> não foi encontrado</div>";
+        }
+        echo "</div>";
+
+        // 9. Inverter a array (array_reverse)
+        $invertida = array_reverse($nomes);
+        echo "<div class='exemplo'><h2>Array invertida (array_reverse):</h2>";
+        echo mostrarArray($invertida);
+        echo "</div>";
+
+        // 10. Transformar array em string (implode)
+        $string_nomes = implode(", ", $nomes);
+        echo "<div class='exemplo'><h2>Array transformada em string (implode):</h2>";
+        echo "<div class='linha'>$string_nomes</div>";
+        echo "</div>";
+
+        // 11. Transformar string em array (explode)
+        $nova_array = explode(", ", $string_nomes);
+        echo "<div class='exemplo'><h2>String transformada de volta em array (explode):</h2>";
+        echo mostrarArray($nova_array);
+        echo "</div>";
+
+        // 12. Remover elementos duplicados (array_unique)
+        $nomes_duplicados = ["Maria", "Ana", "Carlos", "Ana", "João", "Carlos"];
+        echo "<div class='exemplo'><h2>Array com duplicados:</h2>";
+        echo mostrarArray($nomes_duplicados);
+        echo "</div>";
+
+        $unicos = array_unique($nomes_duplicados);
+        echo "<div class='exemplo'><h2>Após array_unique():</h2>";
+        echo mostrarArray($unicos);
+        echo "</div>";
+
+        // 13. Mesclar arrays (array_merge)
+        $outros_nomes = ["Fernanda", "Gustavo"];
+        $mesclado = array_merge($nomes, $outros_nomes);
+        echo "<div class='exemplo'><h2>Após array_merge com outros nomes:</h2>";
+        echo mostrarArray($mesclado);
+        echo "</div>";
+
+        // 14. Filtrar array (array_filter) - nomes com mais de 4 letras
+        $filtrados = array_filter($mesclado, function($nome) {
+            return strlen($nome) > 4;
+        });
+        echo "<div class='exemplo'><h2>Nomes com mais de 4 letras (array_filter):</h2>";
+        echo mostrarArray($filtrados);
+        echo "</div>";
+
+        // 15. Mapear array (array_map) - transformar todos os nomes em maiúsculas
+        $maiusculas = array_map('strtoupper', $mesclado);
+        echo "<div class='exemplo'><h2>Todos os nomes em maiúsculas (array_map):</h2>";
+        echo mostrarArray($maiusculas);
+        echo "</div>";
+
+        ?>
+
     </div>
 </body>
-
 </html>
-
-

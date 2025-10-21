@@ -1,171 +1,54 @@
-body {
-    font-family: "poppins", sans-serif;
-    background-image: url("img/img-fundo.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #333;
+/* Reset simples */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f4fa;
+    color: #333;
+    padding: 20px;
 }
 
 .container {
-    display: flex;
-    width: 90%;
-    max-width: 70%;
-    margin: 50px auto;
-    background-image: url("img/sub-fundo.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding: 30px;
-    border-radius: 32px;
-    box-shadow: 0 8px 15px rgba(49, 51, 68, 0.267);
-}
-.container-resp{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    max-width: 70%;
-    margin: 50px auto;
-    background-image: url("img/sub-fundo.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding: 30px;
-    border-radius: 32px;
-    box-shadow: 0 8px 15px rgba(49, 51, 68, 0.267);
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
-h1, h3, legend{
+h1 {
     text-align: center;
-    color: #242525;
-}
-legend{
-    font-weight: bold;
-    font-size: 2rem;
-}
-form, .container-esquerdo{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    gap: 10px;
-}
-.container-esquerdo{
-    background-image: url("img/fila.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    margin-bottom: 25px;
+    color: #7700cc;
+    font-weight: 700;
 }
 
-label {
-    font-weight: bold;
+.exemplo {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
 }
 
-input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 32px;
-    border: none;
-    box-shadow: 0 2px 15px rgba(49, 51, 68, 0.267);
-}
-input[type="text"]:focus{
-    outline: none;
-}
-.container-botoes{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
-}
-.btn, .limpar {
-    padding: 12px 20px;
-    font-size: 16px;
-    width: 70%;
-    border: none;
-    border-radius: 32px;
-    color: white;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 8px 15px rgba(49, 51, 68, 0.267);
-    transition: all 0.3s ease;
-}
-.container-mensage{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
-.voltar{
-    padding: 12px 20px;
-    font-size: 16px;
-    width: 30%;
-    border: none;
-    border-radius: 32px;
-    color: white;
-    text-transform: uppercase;
-    background-color: #098a10;
-    cursor: pointer;
-    box-shadow: 0 8px 15px rgba(49, 51, 68, 0.267);
-    transition: all 0.3s ease;
-}
-.enviar{
-    padding: 12px 20px;
-    font-size: 16px;
-    width: 70%;
-    border: none;
-    border-radius: 32px;
-    color: white;
-    text-transform: uppercase;
-    background-color: #098a10;
-    cursor: pointer;
-    box-shadow: 0 8px 15px rgba(49, 51, 68, 0.267);
-    transition: all 0.3s ease;
-}
-.enviar:hover{
-    background-color: #07660b;
-}
-.voltar:hover{
-    background-color: #00b900;
-}
-.btn{
-    background-color: #037cd8;
-}
-.btn:hover {
-    background-color: #0182FC;
-}
-.limpar {
-    background-color: #f34954;
-}
-.limpar:hover {
-    background-color: #cf3643;
+.exemplo h2 {
+    font-size: 1.2rem;
+    color: #75009c;
+    margin-bottom: 10px;
 }
 
-
-ul {
-    list-style-type: none;
-    padding-left: 0;
-    width: 100%;
+.linha {
+    padding: 3px 10px;
+    font-size: 1rem;
+    background: #f7f0f8;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    font-family: monospace;
 }
 
-li {
-    background: #e0fbfc;
-    margin: 5px 0;
-    padding: 8px 12px;
-    border-radius: 32px;
-    box-shadow: 0 8px 15px rgba(49, 51, 68, 0.267);
-}
-
-a {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #005f73;
-    font-weight: bold;
+.linha strong {
+    color: #921ae8;
 }
