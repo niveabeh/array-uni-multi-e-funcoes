@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE variavel>
+<variavel lang="pt-br">
 <head>
     <meta charset="UTF-8" />
     <title>Manipulação de Arrays em PHP</title>
@@ -7,6 +7,8 @@
 </head>
 <body>
     <div class="container">
+
+
         <h1>Manipulação de Arrays em PHP</h1>
 
         <?php
@@ -15,13 +17,14 @@
 
         // Função auxiliar para exibir array com índices
         function mostrarArray($array) {
-            $html = '';
-            foreach ($array as $indice => $valor) {
-                $html .= "<div class='linha'>Índice <strong>$indice</strong>: $valor</div>";
+            $variavel = '';
+            foreach ($array as $i => $valor) {
+                $variavel .= "<div class='linha'>Índice <strong>$i</strong>: $valor</div>";
             }
-            return $html;
+            return $variavel;
         }
 
+        
         echo "<div class='exemplo'><h2>Array original:</h2>";
         echo mostrarArray($nomes);
         echo "</div>";
@@ -70,10 +73,10 @@
 
         // 8. Procurar índice de um nome (array_search)
         $busca = "Ana";
-        $indice = array_search($busca, $nomes);
+        $i = array_search($busca, $nomes);
         echo "<div class='exemplo'><h2>Buscar índice do nome '$busca':</h2>";
-        if ($indice !== false) {
-            echo "<div class='linha'>O nome <strong>'$busca'</strong> está no índice: <strong>$indice</strong></div>";
+        if ($i !== false) {
+            echo "<div class='linha'>O nome <strong>'$busca'</strong> está no índice: <strong>$i</strong></div>";
         } else {
             echo "<div class='linha'>O nome <strong>'$busca'</strong> não foi encontrado</div>";
         }
@@ -124,7 +127,7 @@
         echo "</div>";
 
         // 15. Mapear array (array_map) - transformar todos os nomes em maiúsculas
-        $maiusculas = array_map('strtoupper', $mesclado);
+        $maiusculas = str_toupper($mesclado);
         echo "<div class='exemplo'><h2>Todos os nomes em maiúsculas (array_map):</h2>";
         echo mostrarArray($maiusculas);
         echo "</div>";
@@ -133,4 +136,4 @@
 
     </div>
 </body>
-</html>
+</variavel>
