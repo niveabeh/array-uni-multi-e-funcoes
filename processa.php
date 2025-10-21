@@ -1,5 +1,5 @@
 <!DOCTYPE variavel>
-<variavel lang="pt-br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
     <title>Manipulação de Arrays em PHP</title>
@@ -24,7 +24,7 @@
             return $variavel;
         }
 
-        
+
         echo "<div class='exemplo'><h2>Array original:</h2>";
         echo mostrarArray($nomes);
         echo "</div>";
@@ -136,4 +136,4 @@
 
     </div>
 </body>
-</variavel>
+</html>
